@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    boolean hasWhippedCream = false;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String priceMessage = createOrderSummary(price,hasWhippedCream);
+        boolean hasWhippedCream = ((CheckBox) findViewById(R.id.toppings)).isChecked();
+        boolean hasChocolateTopping = ((CheckBox) findViewById(R.id.chocolate_topping)).isChecked();
+        String priceMessage = createOrderSummary(price,hasWhippedCream, hasChocolateTopping);
         displayMessage(priceMessage);
 
     }
@@ -74,19 +76,11 @@ public class MainActivity extends AppCompatActivity {
      * @param orderPrice
      * @return
      */
-    private String createOrderSummary(int orderPrice, boolean whippedCreamOrdered) {
+    private String createOrderSummary(int orderPrice, boolean whippedCreamOrdered, boolean chocolateTopping) {
         String orderSummary = "Name: Manisha Awasthi\n" +
                 "Add whipped cream? " + whippedCreamOrdered +
+                "\nAdd chocolate? " + chocolateTopping +
                 "\nQuantity: " + quantity + "\nTotal: $" + orderPrice + "\nThank you!";
         return orderSummary;
-    }
-
-    /**
-     * Check if order needs Whipped cream
-     */
-    public void whippedCreamOrdered(View view) {
-        CheckBox whippedCreamTopping = (CheckBox) findViewById(R.id.toppings);
-        hasWhippedCream =  whippedCreamTopping.isChecked();
-
     }
 }

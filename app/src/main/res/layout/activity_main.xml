@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,15 +22,22 @@
         android:textAllCaps="true" />
 
     <CheckBox
+        android:id="@+id/toppings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toppings"
-        android:text="@string/whipped_cream"
-        android:textSize="16sp"
-        android:paddingLeft="24dp"
         android:layout_marginBottom="16dp"
-        android:onClick="whippedCreamOrdered"
-        />
+        android:paddingLeft="24dp"
+        android:text="@string/whipped_cream"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/chocolate_topping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="24dp"
+        android:text="@string/chocolate"
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,6 +45,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/quantity"
         android:textAllCaps="true" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,3 +100,4 @@
         android:text="@string/order" />
 
 </LinearLayout>
+</ScrollView>
