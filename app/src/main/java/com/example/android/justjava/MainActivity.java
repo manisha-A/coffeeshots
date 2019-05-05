@@ -3,6 +3,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
@@ -11,8 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    boolean hasWhippedCream = false;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String priceMessage = createOrderSummary(price);
+        String priceMessage = createOrderSummary(price,hasWhippedCream);
         displayMessage(priceMessage);
 
     }
@@ -73,8 +74,19 @@ public class MainActivity extends AppCompatActivity {
      * @param orderPrice
      * @return
      */
-    private String createOrderSummary(int orderPrice) {
-        String orderSummary = "Name: Manisha Awasthi\nQuantity: " + quantity + "\nTotal: $" + orderPrice + "\nThank you!";
+    private String createOrderSummary(int orderPrice, boolean whippedCreamOrdered) {
+        String orderSummary = "Name: Manisha Awasthi\n" +
+                "Add whipped cream? " + whippedCreamOrdered +
+                "\nQuantity: " + quantity + "\nTotal: $" + orderPrice + "\nThank you!";
         return orderSummary;
+    }
+
+    /**
+     * Check if order needs Whipped cream
+     */
+    public void whippedCreamOrdered(View view) {
+        CheckBox whippedCreamTopping = (CheckBox) findViewById(R.id.toppings);
+        hasWhippedCream =  whippedCreamTopping.isChecked();
+
     }
 }

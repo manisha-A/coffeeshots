@@ -5,4 +5,6 @@
     <string name="order_summary">Order Summary</string>
     <string name="decrement">-</string>
     <string name="increment">+</string>
+    <string name="whipped_cream">Whipped Cream</string>
+    <string name="toppings">Toppings</string>
 </resources>
