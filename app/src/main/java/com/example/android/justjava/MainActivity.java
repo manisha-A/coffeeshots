@@ -103,18 +103,19 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private String createOrderSummary(String name, int orderPrice, boolean whippedCreamOrdered, boolean chocolateTopping) {
-        String orderSummary = "Name: " +
+        String orderSummary = getString(R.string.order_summary_name) +
                 name + "\n" +
-                "Add whipped cream? " + whippedCreamOrdered +
-                "\nAdd chocolate? " + chocolateTopping +
-                "\nQuantity: " + quantity + "\nTotal: $" + orderPrice + "\nThank you!";
+                R.string.order_summary_whipped_cream + whippedCreamOrdered +
+                "\n" + R.string.order_summary_chocolate + chocolateTopping + "\n" +
+                R.string.order_summary_quantity + quantity + "\n" +
+                R.string.order_summary_total + orderPrice + "\n" + R.string.thank_you;
         return orderSummary;
     }
 
     private void sendEmail(String userName, String body){
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_SUBJECT,"Just Java Order for " + userName );
+        intent.putExtra(Intent.EXTRA_SUBJECT,R.string.order_summary_email_subject + userName );
         intent.putExtra(Intent.EXTRA_TEXT,body);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
