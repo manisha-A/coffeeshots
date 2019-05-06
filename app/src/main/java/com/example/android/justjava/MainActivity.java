@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 /**
  * This app displays an order form to order coffee.
  */
@@ -103,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private String createOrderSummary(String name, int orderPrice, boolean whippedCreamOrdered, boolean chocolateTopping) {
-        String orderSummary = getString(R.string.order_summary_name) +
-                name + "\n" +
-                R.string.order_summary_whipped_cream + whippedCreamOrdered +
-                "\n" + R.string.order_summary_chocolate + chocolateTopping + "\n" +
-                R.string.order_summary_quantity + quantity + "\n" +
-                R.string.order_summary_total + orderPrice + "\n" + R.string.thank_you;
+        String orderSummary = getString(R.string.order_summary_name, name) +
+                "\n" + getString(R.string.order_summary_whipped_cream, whippedCreamOrdered) +
+                "\n" + getString(R.string.order_summary_chocolate, chocolateTopping) +
+                "\n" + getString(R.string.order_summary_quantity, quantity) +
+                "\n" + getString(R.string.order_summary_total, NumberFormat.getCurrencyInstance().format(orderPrice)) +
+                "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
 
