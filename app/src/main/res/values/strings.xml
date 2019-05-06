@@ -2,7 +2,7 @@
     <string name="app_name">Just Java</string>
     <string name="quantity">Quantity</string>
     <string name="order">Order</string>
-    <string name="order_summary">Order Summary</string>
+
     <string name="decrement">-</string>
     <string name="increment">+</string>
     <string name="whipped_cream">Whipped Cream</string>
