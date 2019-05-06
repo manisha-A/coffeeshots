@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -23,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
+        String userName = String.valueOf(((EditText) findViewById(R.id.name)).getText());
         boolean hasWhippedCream = ((CheckBox) findViewById(R.id.toppings)).isChecked();
         boolean hasChocolateTopping = ((CheckBox) findViewById(R.id.chocolate_topping)).isChecked();
-        String priceMessage = createOrderSummary(price,hasWhippedCream, hasChocolateTopping);
+        int price = calculatePrice(hasWhippedCream, hasChocolateTopping);
+
+        String priceMessage = createOrderSummary(userName, price, hasWhippedCream, hasChocolateTopping);
         displayMessage(priceMessage);
 
     }
@@ -66,18 +69,29 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Calculates the price of the order.
+     * @param whippedCream if whipped cream added
+     * @param chocolate if chocolate added
+     * @return
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private int calculatePrice(boolean whippedCream, boolean chocolate) {
+        int basePrice = 5;
+        if(whippedCream){
+            basePrice = basePrice + 1;
+        }
+        if(chocolate){
+            basePrice = basePrice + 2;
+        }
+
+        return quantity * basePrice;
     }
 
     /**
-     *
      * @param orderPrice
      * @return
      */
-    private String createOrderSummary(int orderPrice, boolean whippedCreamOrdered, boolean chocolateTopping) {
-        String orderSummary = "Name: Manisha Awasthi\n" +
+    private String createOrderSummary(String name, int orderPrice, boolean whippedCreamOrdered, boolean chocolateTopping) {
+        String orderSummary = "Name: " +
+                name + "\n" +
                 "Add whipped cream? " + whippedCreamOrdered +
                 "\nAdd chocolate? " + chocolateTopping +
                 "\nQuantity: " + quantity + "\nTotal: $" + orderPrice + "\nThank you!";
